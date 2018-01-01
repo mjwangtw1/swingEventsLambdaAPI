@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- '4.3'
+env:
+  global:
+  - AWS_ACCESS_KEY_ID=AKIAILJJKURL5KF2EKTA
+  - AWS_DEFAULT_REGION=us-west-2
+  - AWS_SECRET_ACCESS_KEY
+  - secure: UC+S8eAVXPLVHjmUgn3ytIVE/ojPLPvTpNoZy0fP56XcMzwfp7Nb706z6FRYESQoc/6YbU4CgYNBrQiGutVXEZR6q1Fsw7rLiQcoJeceoZA5CY891t459PqR4RqD2N9q6baIOkzYKWNwDu7qiAqqdRnwdM6p5naFIUwezHEvztjl1QyEwcExajgkF1LG5fWGC1a2r3vvkoLMZhLd5tmc1F3HpO3PY1RIxT+4LqJng/+qElz/cWhbbFA47Tv51T/JhwqxrXv0x8cjaL/9ltVKsA0FksVBPBItnG1z2ZJv+X9LTDuI6yW1AN/LeQj8Aa2K1BJLLRn8upX2WhZzwHXhBFLbFbE6uvmZBtpHZHNHkMonfrmG40P1VTO1X0IVFesEBvy/HACTkwfQtlMMZ8Ls4B4OQATJ+gGFQAvsv60egH/Lfxmb5SWxvP8w+xSwJHP9dSfDG53EONCo0GbqSi+w4iz8dIxNIo0IY4sZa2f+hYLQZ2IL0P6k7AaP8K2UFh5xJJtDmZ7JdaUylWJFlu/GBfg/tllgqneL+bAdkBUDsJi851O54t3ky1lzhlTx+DcYbVoz+9WeUY9uh3yhImQQTnDilCiBjoORD59za//VsDuPKo0ZgAjWg00rGJ80TD3tUcHMmpYPrCSQUibSvByz6vr6GyHRff4pG5xZPFxlrhQ=
+branches:
+  only:
+  - master
+before_install:
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
+script: make build
