@@ -3,7 +3,7 @@ exports.handle = function(event, context, callback) {
 
   const response = {
     statusCode: 200,
-    body: { "message": "2018[0927] - Your Selection is indeed : " + event.type }
+    body: { "message": "2018[1357] - Your Selection is indeed : " + event.type }
   };
 
 
