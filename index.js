@@ -5,7 +5,7 @@ var readline = require('readline');
 var googleApi = require('googleapis');
 var googleAuth = require('google-auth-library');
 
-exports.handle = function(event, context, callback) {
+exports.handler = function index(event, context, callback) {
 
   const response = {
     statusCode: 200,
@@ -13,7 +13,7 @@ exports.handle = function(event, context, callback) {
     //   "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
     //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
     // },
-    body: { "message": "20180103[1026] - Your Selection is indeed : " + event.type }
+    body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
   };
 
   //user Selection event.type
