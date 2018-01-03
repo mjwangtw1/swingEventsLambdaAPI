@@ -13,7 +13,7 @@ exports.handle = function(event, context, callback) {
     //   "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
     //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
     // },
-    body: { "message": "2018[1757] - Your Selection is indeed : " + event.type }
+    body: { "message": "20180103[1026] - Your Selection is indeed : " + event.type }
   };
 
   //user Selection event.type

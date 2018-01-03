@@ -1,0 +1,22 @@
+{
+  "name": "travis_swingeventslambda",
+  "version": "1.0.0",
+  "description": "SwingEventsAPI-Lambda",
+  "main": "index.js",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "google-auth-library": "^0.12.0",
+    "googleapis": "^23.0.0",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@mou.github.com:mjwangtw1/swingEventsLambdaAPI.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
