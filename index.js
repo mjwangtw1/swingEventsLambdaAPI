@@ -61,11 +61,11 @@ exports.handler = function index(event, context, callback) {
         timeZone: "Asia/Taipei"
     }, function (err, response) {
 
-        NewResponse = {
-            statusCode: 200,
-            body: {response}
-        };
-        callback(null, NewResponse);
+        // NewResponse = {
+        //     statusCode: 200,
+        //     body: {response}
+        // };
+        callback(null, response);
         return; //Should stop from here
     });
 
