@@ -61,7 +61,7 @@ exports.handler = function index(event, context, callback) {
         timeZone: "Asia/Taipei"
     }, function (err, response) {
 
-        NewResponse = {
+        var NewResponse = {
             statusCode: 200,
             body: {
               "Desc" : response.description,
