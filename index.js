@@ -67,7 +67,7 @@ exports.handler = function index(event, context, callback) {
         };
         callback(null, NewResponse);
         return; //Should stop from here
-    }
+    });
 
 
   console.log('processing event: %j', event)
