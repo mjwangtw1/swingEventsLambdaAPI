@@ -63,7 +63,11 @@ exports.handler = function index(event, context, callback) {
 
         NewResponse = {
             statusCode: 200,
-            body: response
+            body: {
+              "Desc" : response.description,
+              "timeZone" : response.timeZone,
+              "items" : response.items
+            }
         };
         callback(null, NewResponse);
         return; //Should stop from here
