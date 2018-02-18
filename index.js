@@ -18,11 +18,14 @@ exports.handler = function index(event, context, callback) {
 
   //Defined at AWS-Lambda
 
+   var Buffer = require('buffer').Buffer;
+   var PRIVATE_KEY = new Buffer(process.env['GSA_CLIENT_PRIVATE_KEY'], 'base64').toString();
+
     // configure a JWT auth client
     let jwtClient = new google.auth.JWT(
         process.env['GSA_CLIENT_EMAIL'],
         null,
-        process.env['GSA_CLIENT_PRIVATE_KEY'],
+        PRIVATE_KEY,
         ['https://www.googleapis.com/auth/calendar']);
 
     console.log('checking private_key');
@@ -33,12 +36,12 @@ exports.handler = function index(event, context, callback) {
     //authenticate request
         jwtClient.authorize(function (err, tokens) {
             if (err) {
-                console.log('JWT auth fail 1806');
+                console.log('JWT auth fail 1846');
                 console.log(err);
                 console.log(tokens);
                 return;
             } else {
-                console.log('JWT auth works 1806');
+                console.log('JWT auth works 1846');
                 //console.log("Successfully connected!");
             }
         });
