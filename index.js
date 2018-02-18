@@ -17,8 +17,6 @@ exports.handler = function index(event, context, callback) {
   //const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
 
   //Defined at AWS-Lambda
-  var GSA_CLIENT_EMAIL = process.env['GSA_CLIENT_EMAIL'];
-  var GSA_CLIENT_PRIVATE_KEY = process.env['GSA_CLIENT_PRIVATE_KEY'];
 
     // configure a JWT auth client
     let jwtClient = new google.auth.JWT(
@@ -27,7 +25,8 @@ exports.handler = function index(event, context, callback) {
         process.env['GSA_CLIENT_PRIVATE_KEY'],
         ['https://www.googleapis.com/auth/calendar']);
 
-    // console.log('checking jwtClient');
+    console.log('checking private_key');
+    console.log(process.env['GSA_CLIENT_PRIVATE_KEY']);
     // console.log(jwtClient);
     // return;
 
