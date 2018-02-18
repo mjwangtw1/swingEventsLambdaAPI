@@ -1,19 +1,9 @@
-console.log('starting function 0001')
-
-var fs = require('fs');
-var readline = require('readline');
 var google = require('googleapis');
-var googleAuth = require('google-auth-library');
 
 exports.handler = function index(event, context, callback) {
 
   const response = {
     statusCode: 200,
-    // headers: {
-    //   "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
-    //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
-    // },
-    //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
     body: { "message": "20180218[1429] - Your Selection is indeed : " + event.type }
   };
 
@@ -33,30 +23,11 @@ exports.handler = function index(event, context, callback) {
     'blues' : 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com'
   };
 
-  const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
+  //const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
 
   //Defined at AWS-Lambda
   const GSA_CLIENT_EMAIL = process.env['GSA_CLIENT_EMAIL'];
   const GSA_CLIENT_PRIVATE_KEY = process.env['GSA_CLIENT_PRIVATE_KEY'];
-
-   // configure a JWT auth client
-   //  let jwtClient = new google.auth.JWT(
-   //      GSA_CLIENT_EMAIL,
-   //      null,
-   //      GSA_CLIENT_PRIVATE_KEY,
-   //      ['https://www.googleapis.com/auth/calendar']);
-   //  //authenticate request
-   //  jwtClient.authorize(function (err, tokens) {
-   //      if (err) {
-   //          console.log('jwt Auth failed');
-   //          console.log(err);
-   //          return;
-   //      } else {
-   //          console.log("Successfully connected!");
-   //          console.log(tokens);
-   //      }
-   //  });
-   //
 
     //V2-Try
     // configure a JWT auth client
@@ -68,7 +39,7 @@ exports.handler = function index(event, context, callback) {
     //authenticate request
         jwtClient.authorize(function (err, tokens) {
             if (err) {
-                console.log('JWT auth fail');
+                console.log('JWT auth fail 1513');
                 console.log(err);
                 return;
             } else {
@@ -76,36 +47,36 @@ exports.handler = function index(event, context, callback) {
             }
         });
 
+        console.log(jwtClient);
 
     let calendar = google.calendar('v3');
 
-    calendar.events.list({
-        auth: jwtClient,
-        //desired Calendar ID
-        calendarId: CALENDAR_ID['blues'],
-        timeZone: "Asia/Taipei",
-        TimeMax: dt
-    }, function (err, response) {
-
-        console.log('error?');
-        console.log(err);
-        exit();
-
-        var NewResponse = {
-            statusCode: 200,
-            body: {
-              "Desc" : response.description,
-              "timeZone" : response.timeZone,
-              "items" : response.items
-            }
-        };
-        callback(null, NewResponse);
-        return; //Should stop from here
-    });
+    // calendar.events.list({
+    //     auth: jwtClient,
+    //     //desired Calendar ID
+    //     calendarId: CALENDAR_ID['blues'],
+    //     timeZone: "Asia/Taipei",
+    //     TimeMax: dt
+    // }, function (err, response) {
+    //
+    //     console.log('error?');
+    //     console.log(err);
+    //     exit();
+    //
+    //     var NewResponse = {
+    //         statusCode: 200,
+    //         body: {
+    //           "Desc" : response.description,
+    //           "timeZone" : response.timeZone,
+    //           "items" : response.items
+    //         }
+    //     };
+    //     callback(null, NewResponse);
+    //     return; //Should stop from here
+    // });
 
 
   console.log('processing event: %j', event)
-  //callback(null, { hello: 'Hello this is 9527 ' });
 
   callback(null, response);
 }
