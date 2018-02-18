@@ -60,8 +60,9 @@ exports.handler = function index(event, context, callback) {
                timeZone: "Asia/Taipei",
                //TimeMax: dt
            }, function (err, response) {
-               console.log('1111');
-               callback(null, response);
+               console.log('1112');
+               console.log(response);
+               //callback(null, response);
                next(err,response);
            });
        }
@@ -70,7 +71,8 @@ exports.handler = function index(event, context, callback) {
 
        //err Handling
        if(err) throw err;
-       console.log('2222');
+       console.log('2223');
+       console.log(result);
        callback(null, result);
        return;
    });
