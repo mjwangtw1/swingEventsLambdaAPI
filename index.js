@@ -9,7 +9,7 @@ exports.handler = function index(event, context, callback) {
     var nowdt = new Date();
     today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
 
-  const response = {
+  const responseMessage = {
     statusCode: 200,
     body: { "message": "20180218[1901] - Your Selection is indeed : " + event.type }
   };
@@ -66,10 +66,11 @@ exports.handler = function index(event, context, callback) {
         //TimeMax: dt
     }, function (err, response) {
 
-        var NewResponse = {
-            statusCode: 200,
-            body: response
+        console.log(response);
 
+        var NewResponse = {
+            statusCode: 202,
+            body: response
 
             // body: {
             //   "Desc" : response.description,
@@ -83,5 +84,5 @@ exports.handler = function index(event, context, callback) {
 
   console.log('processing event: %j', event)
 
-  callback(null, response);
+  callback(null, responseMessage);
 }
