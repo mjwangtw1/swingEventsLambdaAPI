@@ -11,7 +11,7 @@ exports.handler = function (req, res){
         var type = event.message.type;
 
         //Default Output
-        var returnMessages = = {
+        var returnMessages = {
             statusCode: 200,
             body:
                 { message: "20180218[2102] - Your Selection is indeed : " + type,
