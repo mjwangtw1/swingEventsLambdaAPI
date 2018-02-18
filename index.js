@@ -7,14 +7,14 @@ var googleAuth = require('google-auth-library');
 
 exports.handler = function index(event, context, callback) {
 
-    const response = {
+    var response = {
         statusCode: 200,
         // headers: {
         //   "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
         //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
         // },
         //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
-        body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
+        body: { "message": "20180218[2247] - Your Selection is indeed : " + event.type }
     };
 
     //user Selection event.type
@@ -68,6 +68,9 @@ exports.handler = function index(event, context, callback) {
                 "items" : response.items
             }
         };
+        console.log(NewResponse);
+
+
         callback(null, NewResponse);
         return; //Should stop from here
     });
