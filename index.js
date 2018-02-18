@@ -10,10 +10,11 @@ exports.handler = function index(event, context, callback) {
     var nowdt = new Date();
     today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
 
-  const responseMessage = {
-    statusCode: 200,
-    body: { "message": "20180218[2028] - Your Selection is indeed : " + event.type }
-  };
+      var responseMessage = {
+        statusCode: 200,
+        body: { "message": "20180218[2045] - Your Selection is indeed : " + event.type,
+                "data" : null};
+      };
 
   var displayMessage = "20180218[2028] - Your Selection is indeed : " + event.type;
 
@@ -60,8 +61,9 @@ exports.handler = function index(event, context, callback) {
                timeZone: "Asia/Taipei",
                //TimeMax: dt
            }, function (err, response) {
-               console.log('1112');
+               console.log('1113');
                console.log(response);
+               responseMessage.data = response;
                //callback(null, response);
                next(err,response);
            });
@@ -71,10 +73,10 @@ exports.handler = function index(event, context, callback) {
 
        //err Handling
        if(err) throw err;
-       console.log('2223');
+       console.log('2224');
        console.log(result);
-       callback(null, result);
-       return;
+       //callback(null, result);
+       //return;
    });
 
     console.log('processing event: %j', event)
