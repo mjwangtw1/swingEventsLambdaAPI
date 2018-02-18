@@ -27,19 +27,19 @@ exports.handler = function index(event, context, callback) {
         process.env['GSA_CLIENT_PRIVATE_KEY'],
         ['https://www.googleapis.com/auth/calendar']);
 
-    console.log('checking jwtClient');
-    console.log(jwtClient);
-    return;
-
+    // console.log('checking jwtClient');
+    // console.log(jwtClient);
+    // return;
 
     //authenticate request
         jwtClient.authorize(function (err, tokens) {
             if (err) {
-                console.log('JWT auth fail 1745');
+                console.log('JWT auth fail 1806');
                 console.log(err);
+                console.log(tokens);
                 return;
             } else {
-                console.log('JWT auth works 1745');
+                console.log('JWT auth works 1806');
                 //console.log("Successfully connected!");
             }
         });
