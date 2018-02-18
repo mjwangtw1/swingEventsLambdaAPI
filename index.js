@@ -10,10 +10,10 @@ exports.handler = function index(event, context, callback) {
     var nowdt = new Date();
     today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
 
-  // const responseMessage = {
-  //   statusCode: 200,
-  //   body: { "message": "20180218[1901] - Your Selection is indeed : " + event.type }
-  // };
+  const responseMessage = {
+    statusCode: 200,
+    body: { "message": "20180218[2011] - Your Selection is indeed : " + event.type }
+  };
 
   var displayMessage = "20180218[1921] - Your Selection is indeed : " + event.type;
 
@@ -47,10 +47,10 @@ exports.handler = function index(event, context, callback) {
            );
 
            jwtClient.authorize(function (err, tokens){
-                next(err,tokens);
+                next(err,jwtClient);
            });
 
-       },function fetchCalendar(result1, next){
+       },function fetchCalendar(jwtClient, next){
 
            let calendar = google.calendar('v3');
 
@@ -60,7 +60,7 @@ exports.handler = function index(event, context, callback) {
                timeZone: "Asia/Taipei",
                //TimeMax: dt
            }, function (err, response) {
-
+               callback(null, response);
                next(err,response);
            }
        }
