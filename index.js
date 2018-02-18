@@ -13,7 +13,7 @@ exports.handler = function index(event, context, callback) {
       var responseMessage = {
         statusCode: 200,
         body: { "message": "20180218[2045] - Your Selection is indeed : " + event.type,
-                "data" : null};
+                "data" : null}
       };
 
   var displayMessage = "20180218[2028] - Your Selection is indeed : " + event.type;
