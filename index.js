@@ -47,34 +47,33 @@ exports.handler = function index(event, context, callback) {
             }
         });
 
-        console.log(jwtClient);
+        //console.log(jwtClient);
 
     let calendar = google.calendar('v3');
 
-    // calendar.events.list({
-    //     auth: jwtClient,
-    //     //desired Calendar ID
-    //     calendarId: CALENDAR_ID['blues'],
-    //     timeZone: "Asia/Taipei",
-    //     TimeMax: dt
-    // }, function (err, response) {
-    //
-    //     console.log('error?');
-    //     console.log(err);
-    //     exit();
-    //
-    //     var NewResponse = {
-    //         statusCode: 200,
-    //         body: {
-    //           "Desc" : response.description,
-    //           "timeZone" : response.timeZone,
-    //           "items" : response.items
-    //         }
-    //     };
-    //     callback(null, NewResponse);
-    //     return; //Should stop from here
-    // });
+    calendar.events.list({
+        auth: jwtClient,
+        //desired Calendar ID
+        calendarId: CALENDAR_ID['blues'],
+        timeZone: "Asia/Taipei",
+        TimeMax: dt
+    }, function (err, response) {
 
+        console.log('error?');
+        console.log(err);
+        exit();
+
+        var NewResponse = {
+            statusCode: 200,
+            body: {
+              "Desc" : response.description,
+              "timeZone" : response.timeZone,
+              "items" : response.items
+            }
+        };
+        callback(null, NewResponse);
+        return; //Should stop from here
+    });
 
   console.log('processing event: %j', event)
 
