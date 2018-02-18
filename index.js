@@ -28,8 +28,8 @@ exports.handler = function index(event, context, callback) {
         PRIVATE_KEY,
         ['https://www.googleapis.com/auth/calendar']);
 
-    console.log('checking private_key');
-    console.log(process.env['GSA_CLIENT_PRIVATE_KEY']);
+    // console.log('checking private_key');
+    // console.log(process.env['GSA_CLIENT_PRIVATE_KEY']);
     // console.log(jwtClient);
     // return;
 
@@ -41,7 +41,7 @@ exports.handler = function index(event, context, callback) {
                 console.log(tokens);
                 return;
             } else {
-                console.log('JWT auth works 1846');
+                //console.log('JWT auth works 1846');
                 //console.log("Successfully connected!");
             }
         });
@@ -50,32 +50,28 @@ exports.handler = function index(event, context, callback) {
 
     let calendar = google.calendar('v3');
 
-    console.log('Stop here');
-    return 'geeee';
+    // console.log('Stop here');
+    // return 'geeee';
 
-    // calendar.events.list({
-    //     auth: jwtClient,
-    //     //desired Calendar ID
-    //     calendarId: CALENDAR_ID['blues'],
-    //     timeZone: "Asia/Taipei",
-    //     TimeMax: dt
-    // }, function (err, response) {
-    //
-    //     console.log('error?');
-    //     console.log(err);
-    //     exit();
-    //
-    //     var NewResponse = {
-    //         statusCode: 200,
-    //         body: {
-    //           "Desc" : response.description,
-    //           "timeZone" : response.timeZone,
-    //           "items" : response.items
-    //         }
-    //     };
-    //     callback(null, NewResponse);
-    //     return; //Should stop from here
-    // });
+    calendar.events.list({
+        auth: jwtClient,
+        //desired Calendar ID
+        calendarId: CALENDAR_ID['blues'],
+        timeZone: "Asia/Taipei",
+        TimeMax: dt
+    }, function (err, response) {
+
+        var NewResponse = {
+            statusCode: 200,
+            body: {
+              "Desc" : response.description,
+              "timeZone" : response.timeZone,
+              "items" : response.items
+            }
+        };
+        callback(null, NewResponse);
+        return; //Should stop from here
+    });
 
   console.log('processing event: %j', event)
 
