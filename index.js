@@ -56,20 +56,22 @@ exports.handler = function index(event, context, callback) {
         timeZone: "Asia/Taipei"
     }, function (err, response) {
 
-        var NewResponse = {
-            statusCode: 200,
-            body: {
-                "Desc" : response.description,
-                "timeZone" : response.timeZone,
-                "items" : response.items
-            }
-        };
-        //console.log(NewResponse);
+        if(err) throw err;
+        callback(null, response);
 
-        callback(null, NewResponse);
+        // var NewResponse = {
+        //     statusCode: 200,
+        //     body: {
+        //         "Desc" : response.description,
+        //         "timeZone" : response.timeZone,
+        //         "items" : response.items
+        //     }
+        // };
+        // //console.log(NewResponse);
+        //
+        // callback(null, NewResponse);
         //return; //Should stop from here
     });
-
 
     console.log('processing event: %j', event)
     //callback(null, { hello: 'Hello this is 9527 ' });
