@@ -60,15 +60,17 @@ exports.handler = function index(event, context, callback) {
                timeZone: "Asia/Taipei",
                //TimeMax: dt
            }, function (err, response) {
+               console.log('1111');
                callback(null, response);
                next(err,response);
-           }
+           });
        }
 
    ],function (err,result){
 
        //err Handling
        if(err) throw err;
+       console.log('2222');
        callback(null, result);
    });
 
