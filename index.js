@@ -4,6 +4,9 @@ var rp = require('request-promise');
 
 exports.handler = function (req, res){
 //exports.handler = function index(event, context, callback) {
+    console.log('req');
+    console.log(req);
+    return;
 
     const promises = req.events.map(event => {
 
@@ -35,8 +38,8 @@ exports.handler = function (req, res){
 
         //Defined at AWS-Lambda
         //Data from Lambda is Based_64, need to convert back
-        const CLIENT_EMAIL = process.env['GSA_CLIENT_EMAIL'];
-        const PRIVATE_KEY = new Buffer(process.env['GSA_CLIENT_PRIVATE_KEY'], 'base64').toString();
+        const CLIENT_EMAIL = process.env.GSA_CLIENT_EMAIL;
+        const PRIVATE_KEY = new Buffer(process.env.GSA_CLIENT_PRIVATE_KEY, 'base64').toString();
 
 
         let jwtClient = new google.auth.JWT(
@@ -54,7 +57,7 @@ exports.handler = function (req, res){
 
         calendar.events.list({
             auth: jwtClient,
-            calendarId: CALENDAR_ID['blues'], //desired Calendar ID
+            calendarId: CALENDAR_ID.blues, //desired Calendar ID
             timeZone: "Asia/Taipei",
             //TimeMax: dt
         }, function (err, response) {
@@ -78,4 +81,4 @@ exports.handler = function (req, res){
     Promise
         .all(promises)
         .then(() => res.json({success: true}));
-}
+};
