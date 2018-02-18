@@ -8,16 +8,18 @@ exports.handler = function (req, res){
 //     console.log(req);
 //     return;
 
-    const promises = req.map(event => {
+    var promises = event
+    {
+    // const promises = {
 
         //All code here
-        var type = event.message.type;
+        //var type = event.message.type;
 
         //Default Output
         var returnMessages = {
             statusCode: 200,
             body:
-                { message: "20180218[2125] - Your Selection is indeed : " + type,
+                { message: "20180218[2125] - Your Selection is indeed : " + req.type,
                      data: null}
         };
 
@@ -76,7 +78,7 @@ exports.handler = function (req, res){
                     console.log("Error : " + err);
                 });
         });
-    }); //end of promises
+    } //end of promises
 
     Promise
         .all(promises)
