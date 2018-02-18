@@ -1,9 +1,6 @@
 console.log('starting function')
 
-var fs = require('fs');
-var readline = require('readline');
 var google = require('googleapis');
-var googleAuth = require('google-auth-library');
 
 exports.handler = function index(event, context, callback) {
 
@@ -14,7 +11,7 @@ exports.handler = function index(event, context, callback) {
         //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
         // },
         //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
-        body: { "message": "20180218[2247] - Your Selection is indeed : " + event.type }
+        body: { "message": "20180218[2252] - Your Selection is indeed : " + event.type }
     };
 
     //user Selection event.type
@@ -33,7 +30,6 @@ exports.handler = function index(event, context, callback) {
 
     const CLIENT_EMAIL = process.env.GSA_CLIENT_EMAIL;
     const PRIVATE_KEY = new Buffer(process.env.GSA_CLIENT_PRIVATE_KEY, 'base64').toString();
-
 
     let jwtClient = new google.auth.JWT(
         CLIENT_EMAIL,
@@ -68,11 +64,10 @@ exports.handler = function index(event, context, callback) {
                 "items" : response.items
             }
         };
-        console.log(NewResponse);
-
+        //console.log(NewResponse);
 
         callback(null, NewResponse);
-        return; //Should stop from here
+        //return; //Should stop from here
     });
 
 
