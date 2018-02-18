@@ -29,6 +29,9 @@ exports.handler = function index(event, context, callback) {
   const GSA_CLIENT_EMAIL = process.env['GSA_CLIENT_EMAIL'];
   const GSA_CLIENT_PRIVATE_KEY = process.env['GSA_CLIENT_PRIVATE_KEY'];
 
+  console.log(GSA_CLIENT_EMAIL);
+  console.log(GSA_CLIENT_PRIVATE_KEY);
+
     //V2-Try
     // configure a JWT auth client
     let jwtClient = new google.auth.JWT(
@@ -39,11 +42,11 @@ exports.handler = function index(event, context, callback) {
     //authenticate request
         jwtClient.authorize(function (err, tokens) {
             if (err) {
-                console.log('JWT auth fail 1513');
+                console.log('JWT auth fail 1645');
                 console.log(err);
                 return;
             } else {
-                console.log('JWT auth works');
+                console.log('JWT auth works 1645');
                 //console.log("Successfully connected!");
             }
         });
