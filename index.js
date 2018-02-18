@@ -29,9 +29,6 @@ exports.handler = function index(event, context, callback) {
   const GSA_CLIENT_EMAIL = process.env['GSA_CLIENT_EMAIL'];
   const GSA_CLIENT_PRIVATE_KEY = process.env['GSA_CLIENT_PRIVATE_KEY'];
 
-  console.log(GSA_CLIENT_EMAIL);
-  console.log(GSA_CLIENT_PRIVATE_KEY);
-
     // jwtClient
     let jwtClient = new google.auth.JWT(
         GSA_CLIENT_EMAIL,
@@ -40,6 +37,10 @@ exports.handler = function index(event, context, callback) {
         ['https://www.googleapis.com/auth/calendar'],
         null
     );
+
+    console.log('checking jwtClient 1711');
+    console.log(jwtClient);
+    return;
 
     //authenticate request
         jwtClient.authorize(function (err, tokens) {
