@@ -12,10 +12,10 @@ exports.handler = function index(event, context, callback) {
 
   const responseMessage = {
     statusCode: 200,
-    body: { "message": "20180218[2011] - Your Selection is indeed : " + event.type }
+    body: { "message": "20180218[2028] - Your Selection is indeed : " + event.type }
   };
 
-  var displayMessage = "20180218[1921] - Your Selection is indeed : " + event.type;
+  var displayMessage = "20180218[2028] - Your Selection is indeed : " + event.type;
 
   //user Selection event.type
   const CALENDAR_ID = {
@@ -72,45 +72,8 @@ exports.handler = function index(event, context, callback) {
        if(err) throw err;
        console.log('2222');
        callback(null, result);
+       return;
    });
-
-
-
-    //authenticate request
-    //     jwtClient.authorize(function (err, tokens) {
-    //         if (err) {
-    //             console.log('JWT auth fail 1855');
-    //             console.log(err);
-    //             console.log(tokens);
-    //             return;
-    //         } else {
-    //
-    //         }
-    //     });
-
-    // let calendar = google.calendar('v3');
-    //
-    // calendar.events.list({
-    //     auth: jwtClient,
-    //     calendarId: CALENDAR_ID['blues'], //desired Calendar ID
-    //     timeZone: "Asia/Taipei",
-    //     //TimeMax: dt
-    // }, function (err, response) {
-    //
-    //     console.log(response);
-    //
-    //     var NewResponse = {
-    //         statusCode: 202,
-    //         body: response
-    //         // body: {
-    //         //   "Desc" : response.description,
-    //         //   "timeZone" : response.timeZone,
-    //         //   "items" : response.items
-    //         // }
-    //     };
-    //     callback(null, NewResponse);
-    //     return; //Should stop from here
-    // });
 
     console.log('processing event: %j', event)
 
