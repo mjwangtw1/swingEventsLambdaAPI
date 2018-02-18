@@ -1,86 +1,80 @@
+console.log('starting function')
+
+var fs = require('fs');
+var readline = require('readline');
 var google = require('googleapis');
-// var async = require('async');
-var rp = require('request-promise');
+var googleAuth = require('google-auth-library');
 
-exports.handler = function (req, res){
-//exports.handler = function index(event, context, callback) {
-//     console.log('req');
-//     console.log(req);
-//     return;
+exports.handler = function index(event, context, callback) {
 
-    var promises = event
-    {
-    // const promises = {
+    const response = {
+        statusCode: 200,
+        // headers: {
+        //   "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
+        //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
+        // },
+        //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
+        body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
+    };
 
-        //All code here
-        //var type = event.message.type;
+    //user Selection event.type
 
-        //Default Output
-        var returnMessages = {
+    //Get the current Date:
+
+    const CALENDAR_ID = {
+        'primary': 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com', //Special Events
+        'swing' : 'du5ncgcem4duked6jui8p1g5as@group.calendar.google.com',
+        'blues' : 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com'
+    };
+
+    //const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
+
+    var Buffer = require('buffer').Buffer;
+
+    const CLIENT_EMAIL = process.env.GSA_CLIENT_EMAIL;
+    const PRIVATE_KEY = new Buffer(process.env.GSA_CLIENT_PRIVATE_KEY, 'base64').toString();
+
+
+    let jwtClient = new google.auth.JWT(
+        CLIENT_EMAIL,
+        null,
+        PRIVATE_KEY,
+        ['https://www.googleapis.com/auth/calendar']
+    );
+    //authenticate request
+    jwtClient.authorize(function (err, tokens) {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            //console.log("Successfully connected!");
+        }
+    });
+
+    let calendar = google.calendar('v3');
+
+    calendar.events.list({
+        auth: jwtClient,
+        //desired Calendar ID
+        calendarId: CALENDAR_ID['blues'],
+        timeZone: "Asia/Taipei"
+    }, function (err, response) {
+
+        var NewResponse = {
             statusCode: 200,
-            body:
-                { message: "20180218[2125] - Your Selection is indeed : " + req.type,
-                     data: null}
-        };
-
-        var dt = new Date();
-        dt.setDate(dt.getDate()+7);
-        nextWeek = dt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
-
-        var nowdt = new Date();
-        today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
-
-        const CALENDAR_ID = {
-            'primary': 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com', //Special Events
-            'swing'  : 'du5ncgcem4duked6jui8p1g5as@group.calendar.google.com',
-            'blues'  : 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com'
-        };
-
-        var Buffer = require('buffer').Buffer;
-
-        //Defined at AWS-Lambda
-        //Data from Lambda is Based_64, need to convert back
-        const CLIENT_EMAIL = process.env.GSA_CLIENT_EMAIL;
-        const PRIVATE_KEY = new Buffer(process.env.GSA_CLIENT_PRIVATE_KEY, 'base64').toString();
-
-
-        let jwtClient = new google.auth.JWT(
-            CLIENT_EMAIL,
-            null,
-            PRIVATE_KEY,
-            ['https://www.googleapis.com/auth/calendar']
-        );
-
-        jwtClient.authorize(function (err, tokens){
-            if(err) throw err;
-        });
-
-        let calendar = google.calendar('v3');
-
-        calendar.events.list({
-            auth: jwtClient,
-            calendarId: CALENDAR_ID.blues, //desired Calendar ID
-            timeZone: "Asia/Taipei",
-            //TimeMax: dt
-        }, function (err, response) {
-
-            if(err){
-                returnMessages.body.data = 'error!';
-            }else{
-                returnMessages.body.data = response;
+            body: {
+                "Desc" : response.description,
+                "timeZone" : response.timeZone,
+                "items" : response.items
             }
+        };
+        callback(null, NewResponse);
+        return; //Should stop from here
+    });
 
-            //Toss out data
-            return rp(returnMessages)
-                .then(function (response) {
-                    console.log("Success : " + response);
-                }).catch(function (err) {
-                    console.log("Error : " + err);
-                });
-        });
-    } //end of promises
 
-    Promise
-        .all(promises)
-        .then(() => res.json({success: true}));
-};
+    console.log('processing event: %j', event)
+    //callback(null, { hello: 'Hello this is 9527 ' });
+
+    callback(null, response);
+}
