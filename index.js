@@ -40,22 +40,42 @@ exports.handler = function index(event, context, callback) {
   const GSA_CLIENT_PRIVATE_KEY = process.env['GSA_CLIENT_PRIVATE_KEY'];
 
    // configure a JWT auth client
+   //  let jwtClient = new google.auth.JWT(
+   //      GSA_CLIENT_EMAIL,
+   //      null,
+   //      GSA_CLIENT_PRIVATE_KEY,
+   //      ['https://www.googleapis.com/auth/calendar']);
+   //  //authenticate request
+   //  jwtClient.authorize(function (err, tokens) {
+   //      if (err) {
+   //          console.log('jwt Auth failed');
+   //          console.log(err);
+   //          return;
+   //      } else {
+   //          console.log("Successfully connected!");
+   //          console.log(tokens);
+   //      }
+   //  });
+   //
+
+    //V2-Try
+    // configure a JWT auth client
     let jwtClient = new google.auth.JWT(
         GSA_CLIENT_EMAIL,
         null,
         GSA_CLIENT_PRIVATE_KEY,
         ['https://www.googleapis.com/auth/calendar']);
     //authenticate request
-    jwtClient.authorize(function (err, tokens) {
-        if (err) {
-            console.log('jwt Auth failed');
-            console.log(err);
-            return;
-        } else {
-            console.log("Successfully connected!");
-            console.log(tokens);
-        }
-    });
+        jwtClient.authorize(function (err, tokens) {
+            if (err) {
+                console.log('JWT auth fail');
+                console.log(err);
+                return;
+            } else {
+                //console.log("Successfully connected!");
+            }
+        });
+
 
     let calendar = google.calendar('v3');
 
@@ -66,6 +86,10 @@ exports.handler = function index(event, context, callback) {
         timeZone: "Asia/Taipei",
         TimeMax: dt
     }, function (err, response) {
+
+        console.log('error?');
+        console.log(err);
+        exit();
 
         var NewResponse = {
             statusCode: 200,
