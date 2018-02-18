@@ -19,8 +19,8 @@ exports.handler = function index(event, context, callback) {
 
   const CALENDAR_ID = {
     'primary': 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com', //Special Events
-    'swing' : 'du5ncgcem4duked6jui8p1g5as@group.calendar.google.com',
-    'blues' : 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com'
+    'swing'  : 'du5ncgcem4duked6jui8p1g5as@group.calendar.google.com',
+    'blues'  : 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com'
   };
 
   //const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
@@ -32,21 +32,23 @@ exports.handler = function index(event, context, callback) {
   console.log(GSA_CLIENT_EMAIL);
   console.log(GSA_CLIENT_PRIVATE_KEY);
 
-    //V2-Try
-    // configure a JWT auth client
+    // jwtClient
     let jwtClient = new google.auth.JWT(
         GSA_CLIENT_EMAIL,
         null,
         GSA_CLIENT_PRIVATE_KEY,
-        ['https://www.googleapis.com/auth/calendar']);
+        ['https://www.googleapis.com/auth/calendar'],
+        null
+    );
+
     //authenticate request
         jwtClient.authorize(function (err, tokens) {
             if (err) {
-                console.log('JWT auth fail 1645');
+                console.log('JWT auth fail 1655');
                 console.log(err);
                 return;
             } else {
-                console.log('JWT auth works 1645');
+                console.log('JWT auth works 1655');
                 //console.log("Successfully connected!");
             }
         });
