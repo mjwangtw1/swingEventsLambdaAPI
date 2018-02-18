@@ -1,4 +1,4 @@
-console.log('starting function')
+console.log('starting function 0001')
 
 var fs = require('fs');
 var readline = require('readline');
@@ -14,12 +14,18 @@ exports.handler = function index(event, context, callback) {
     //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
     // },
     //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
-    body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
+    body: { "message": "20180218[1429] - Your Selection is indeed : " + event.type }
   };
 
   //user Selection event.type
 
   //Get the current Date:
+    var dt = new Date();
+    dt.setDate(dt.getDate()+7);
+    nextWeek = dt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
+
+    var nowdt = new Date();
+    today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
 
   const CALENDAR_ID = {
     'primary': 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com', //Special Events
@@ -29,13 +35,11 @@ exports.handler = function index(event, context, callback) {
 
   const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
 
-
   //Defined at AWS-Lambda
   const GSA_CLIENT_EMAIL = process.env['GSA_CLIENT_EMAIL'];
   const GSA_CLIENT_PRIVATE_KEY = process.env['GSA_CLIENT_PRIVATE_KEY'];
 
-
-    // configure a JWT auth client
+   // configure a JWT auth client
     let jwtClient = new google.auth.JWT(
         GSA_CLIENT_EMAIL,
         null,
@@ -44,21 +48,23 @@ exports.handler = function index(event, context, callback) {
     //authenticate request
     jwtClient.authorize(function (err, tokens) {
         if (err) {
+            console.log('jwt Auth failed');
             console.log(err);
             return;
         } else {
-            //console.log("Successfully connected!");
+            console.log("Successfully connected!");
+            console.log(tokens);
         }
     });
 
     let calendar = google.calendar('v3');
 
-
     calendar.events.list({
         auth: jwtClient,
         //desired Calendar ID
         calendarId: CALENDAR_ID['blues'],
-        timeZone: "Asia/Taipei"
+        timeZone: "Asia/Taipei",
+        TimeMax: dt
     }, function (err, response) {
 
         var NewResponse = {
