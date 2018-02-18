@@ -11,7 +11,7 @@ exports.handler = function index(event, context, callback) {
 
   const response = {
     statusCode: 200,
-    body: { "message": "20180218[1429] - Your Selection is indeed : " + event.type }
+    body: { "message": "20180218[1901] - Your Selection is indeed : " + event.type }
   };
 
   //user Selection event.type
@@ -54,29 +54,28 @@ exports.handler = function index(event, context, callback) {
                 //console.log("Successfully connected!");
             }
         });
-
         //console.log(jwtClient);
 
     let calendar = google.calendar('v3');
-
-    // console.log('Stop here');
-    // return 'geeee';
 
     calendar.events.list({
         auth: jwtClient,
         //desired Calendar ID
         calendarId: CALENDAR_ID['blues'],
         timeZone: "Asia/Taipei",
-        TimeMax: dt
+        //TimeMax: dt
     }, function (err, response) {
 
         var NewResponse = {
             statusCode: 200,
-            body: {
-              "Desc" : response.description,
-              "timeZone" : response.timeZone,
-              "items" : response.items
-            }
+            body: response
+
+
+            // body: {
+            //   "Desc" : response.description,
+            //   "timeZone" : response.timeZone,
+            //   "items" : response.items
+            // }
         };
         callback(null, NewResponse);
         return; //Should stop from here
