@@ -4,11 +4,11 @@ var rp = require('request-promise');
 
 exports.handler = function (req, res){
 //exports.handler = function index(event, context, callback) {
-    console.log('req');
-    console.log(req);
-    return;
+//     console.log('req');
+//     console.log(req);
+//     return;
 
-    const promises = req.events.map(event => {
+    const promises = req.map(event => {
 
         //All code here
         var type = event.message.type;
@@ -17,7 +17,7 @@ exports.handler = function (req, res){
         var returnMessages = {
             statusCode: 200,
             body:
-                { message: "20180218[2102] - Your Selection is indeed : " + type,
+                { message: "20180218[2125] - Your Selection is indeed : " + type,
                      data: null}
         };
 
