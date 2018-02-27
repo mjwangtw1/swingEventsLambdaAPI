@@ -55,28 +55,32 @@ exports.handler = function index(event, context, callback) {
         calendarId: CALENDAR_ID['blues'],
         timeZone: "Asia/Taipei"
     }, function (err, res) {
+        if (err) {
 
-        console.log('1235');
-        console.log(response);
+            //const err_message = 'ERROR';
+            callback(null, err);
+            throw err;
 
-        if(err) throw err;
-        callback(null, res);
+        }else{
 
-        // var NewResponse = {
-        //     statusCode: 200,
-        //     body: {
-        //         "Desc" : response.description,
-        //         "timeZone" : response.timeZone,
-        //         "items" : response.items
-        //     }
-        // };
+            var NewResponse = {
+                    statusCode: 200,
+                    body: {
+                        "Desc" : res.description,
+                        "timeZone" : res.timeZone,
+                        "items" : res.items
+                    }
+            };
+            callback(null, NewResponse);
+        }
+   
         // //console.log(NewResponse);
         //
         // callback(null, NewResponse);
         //return; //Should stop from here
     });
 
-    console.log('processing event: %j', event)
+    console.log('processing event 0226: %j', event)
     //callback(null, { hello: 'Hello this is 9527 ' });
 
     //callback(null, response);
