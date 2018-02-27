@@ -56,6 +56,9 @@ exports.handler = function index(event, context, callback) {
         timeZone: "Asia/Taipei"
     }, function (err, response) {
 
+        console.log('1234');
+        console.log(response);
+
         if(err) throw err;
         callback(null, response);
 
