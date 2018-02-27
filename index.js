@@ -54,13 +54,13 @@ exports.handler = function index(event, context, callback) {
         //desired Calendar ID
         calendarId: CALENDAR_ID['blues'],
         timeZone: "Asia/Taipei"
-    }, function (err, response) {
+    }, function (err, res) {
 
-        console.log('1234');
+        console.log('1235');
         console.log(response);
 
         if(err) throw err;
-        callback(null, response);
+        callback(null, res);
 
         // var NewResponse = {
         //     statusCode: 200,
@@ -79,5 +79,5 @@ exports.handler = function index(event, context, callback) {
     console.log('processing event: %j', event)
     //callback(null, { hello: 'Hello this is 9527 ' });
 
-    callback(null, response);
+    //callback(null, response);
 }
