@@ -70,8 +70,8 @@ exports.handler = function index(event, context, callback) {
         auth: jwtClient,
         //desired Calendar ID
         calendarId: targetCalendar,
-        maxResult: 5,
-        timeMin: nowLocalTime,
+        // maxResult: 5,
+        // timeMin: nowLocalTime,
         //timeMin: nowLocalTime,
         //timeMax: nextWeekLocalTime,
         //calendarId: CALENDAR_ID['blues'],
@@ -89,16 +89,19 @@ exports.handler = function index(event, context, callback) {
             params: {
                 timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
                 timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
-                singleEvents: true,
+                //singleEvents: true,
                 orderBy: 'startTime'
             }
+
         }, function (err, res) {
         if (err) {
             //const err_message = 'ERROR';
+            console.log('hit an error');
             callback(null, err);
             throw err;
         }else{
-
+            console.log('Should worked fine');
+            console.log(res);
             callback(null, res);
 
             // var NewResponse = {
