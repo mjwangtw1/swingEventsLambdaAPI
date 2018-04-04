@@ -107,7 +107,7 @@ exports.handler = function index(event, context, callback) {
         //return; //Should stop from here
     });
 
-    console.log('processing event 0226: %j', event)
+    console.log('processing event: ' + event + ' date info:' + timestring);
     //callback(null, { hello: 'Hello this is 9527 ' });
 
     //callback(null, response);
