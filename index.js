@@ -74,25 +74,21 @@ exports.handler = function index(event, context, callback) {
         // timeMin: nowLocalTime,
         timeMin: nowLocalTime,
         timeMax: nextWeekLocalTime,
+            orderBy: 'startTime'
         //calendarId: CALENDAR_ID['blues'],
         //timeZone: "Asia/Taipei"
     },
         {
-        //Trying new Method
-        // qs: {
 
-        //     singleEvents: true,
-        //     orderBy: 'startTime'
-        // }
 
-            params: {
-                // timeMin: nowLocalTime,
-                // timeMax: nextWeekLocalTime,
-                // timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
-                // timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
-                //singleEvents: true,
-                orderBy: 'startTime'
-            }
+            // params: {
+            //     // timeMin: nowLocalTime,
+            //     // timeMax: nextWeekLocalTime,
+            //     // timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
+            //     // timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
+            //     //singleEvents: true,
+            //     orderBy: 'startTime'
+            // }
 
         }, function (err, res) {
         if (err) {
@@ -108,7 +104,7 @@ exports.handler = function index(event, context, callback) {
             var NewResponse = {
                     statusCode: 200,
                     body: {
-                        "Remark" : '1610',
+                        "Remark" : '1621',
                         "NowTime" : nowLocalTime,
                         "NextWeekTime" : nextWeekLocalTime,
                         "Desc" : result.description,
