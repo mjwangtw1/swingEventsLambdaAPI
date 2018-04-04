@@ -79,7 +79,7 @@ exports.handler = function index(event, context, callback) {
         // timeMin: nowLocalTime,
         timeMin: nowLocalTime,
         timeMax: nextWeekLocalTime,
-            singleEvents: singleEventsFlag,
+        //    singleEvents: singleEventsFlag,
             orderBy: orderByType
         //     orderBy: 'startTime'
         //calendarId: CALENDAR_ID['blues'],
