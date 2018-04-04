@@ -5,14 +5,20 @@ var google = require('googleapis');
 exports.handler = function index(event, context, callback) {
 
     //Here Deals with the time format
-    var dt = new Date();
-    dt.setDate(dt.getDate()+7);
-    nextWeek = dt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
+    // var dt = new Date();
+    // dt.setDate(dt.getDate()+7);
+    // nextWeek = dt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
+    // var nowdt = new Date();
+    // today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
+    //timestring = ', Nowdate: ' + nowdt + ' , NextWeekDt : ' + nextWeek;
 
-    var nowdt = new Date();
-    today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
 
-    timestring = ', Nowdate: ' + nowdt + ' , NextWeekDt : ' + nextWeek;
+    offset = 8; //Taipei = UTC+8
+    var d = new Date();
+    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    var nd = new Date(utc + (3600000*offset));
+
+    timestring = ', newMethod: ' + nd;
 
     var response = {
         statusCode: 200,
@@ -93,6 +99,7 @@ exports.handler = function index(event, context, callback) {
             var NewResponse = {
                     statusCode: 200,
                     body: {
+                        "NowTime" : nd,
                         "Desc" : res.description,
                         "timeZone" : res.timeZone,
                         "items" : res.items
