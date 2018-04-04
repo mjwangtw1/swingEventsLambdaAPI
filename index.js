@@ -80,15 +80,16 @@ exports.handler = function index(event, context, callback) {
         {
         //Trying new Method
         // qs: {
-        //     timeMin: nowLocalTime,
-        //     timeMax: nextWeekLocalTime,
+
         //     singleEvents: true,
         //     orderBy: 'startTime'
         // }
 
             params: {
-                timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
-                timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
+                timeMin: nowLocalTime,
+                timeMax: nextWeekLocalTime,
+                // timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
+                // timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
                 //singleEvents: true,
                 orderBy: 'startTime'
             }
@@ -101,22 +102,21 @@ exports.handler = function index(event, context, callback) {
             throw err;
         }else{
             console.log('Should worked fine 599 01');
-            //console.log(JSON.stringify(res));
-            console.log(res.data);
-            callback(null, res.data);
 
-            // var NewResponse = {
-            //         statusCode: 200,
-            //         body: {
-            //             "NowTime" : nowLocalTime,
-            //             "NextWeekTime" : nextWeekLocalTime,
-            //             "Desc" : res.description,
-            //             "timeZone" : res.timeZone,
-            //             "items" : res.items,
-            //             "res_raw": res
-            //         }
-            // };
-            // callback(null, NewResponse);
+            result = res.data; //Use this to avoid Circular Structure.
+
+            var NewResponse = {
+                    statusCode: 200,
+                    body: {
+                        "NowTime" : nowLocalTime,
+                        "NextWeekTime" : nextWeekLocalTime,
+                        "Desc" : result.description,
+                        "timeZone" : result.timeZone,
+                        "items" : result.items,
+                        "result_raw": result
+                    }
+            };
+            callback(null, NewResponse);
         }
    
         // //console.log(NewResponse);
@@ -125,7 +125,7 @@ exports.handler = function index(event, context, callback) {
         //return; //Should stop from here
     });
 
-    console.log('1600: Refatch Data - processing event: ' + event + ' date info:' + timeString);
+    console.log('1607: Refatch Data - processing event: ' + event + ' date info:' + timeString);
     //callback(null, { hello: 'Hello this is 9527 ' });
 
     //callback(null, response);
