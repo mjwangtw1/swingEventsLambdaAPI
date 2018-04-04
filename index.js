@@ -87,7 +87,8 @@ exports.handler = function index(event, context, callback) {
             var NewResponse = {
                     statusCode: 200,
                     body: {
-                        "NowTime" : nd,
+                        "NowTime" : nowLocalTime,
+                        "NextWeekTime" : nextWeekLocalTime,
                         "Desc" : res.description,
                         "timeZone" : res.timeZone,
                         "items" : res.items
@@ -102,7 +103,7 @@ exports.handler = function index(event, context, callback) {
         //return; //Should stop from here
     });
 
-    console.log('processing event: ' + event + ' date info:' + timestring);
+    console.log('processing event: ' + event + ' date info:' + timeString);
     //callback(null, { hello: 'Hello this is 9527 ' });
 
     //callback(null, response);
