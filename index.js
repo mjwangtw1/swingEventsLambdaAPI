@@ -66,16 +66,21 @@ exports.handler = function index(event, context, callback) {
 
     let calendar = google.calendar('v3');
 
+    //Require to pass-in
+    singleEventsFlag = event.singleEventsFlag;
+    orderByType = event.orderByType;
+    count = event.count;
+
     calendar.events.list({
         auth: jwtClient,
         //desired Calendar ID
         calendarId: targetCalendar,
-        // maxResult: 5,
+        maxResult: count,
         // timeMin: nowLocalTime,
         timeMin: nowLocalTime,
         timeMax: nextWeekLocalTime,
-            singleEvents: true,
-            orderBy: 'startTime'
+            singleEvents: singleEventsFlag,
+            orderBy: orderByType
         //     orderBy: 'startTime'
         //calendarId: CALENDAR_ID['blues'],
         //timeZone: "Asia/Taipei"
