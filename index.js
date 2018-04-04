@@ -11,8 +11,8 @@ exports.handler = function index(event, context, callback) {
     var nextWeek = new Date();
     nextWeek.setDate(nextWeek.getDate() + 7);
     var utc_nextWeek = nextWeek.getTime() + (nextWeek.getTimezoneOffset() * 60000);
-    var nextWeekLocalTime = new Date(utc_nextWeek + (3600000*offset));
-    var nowLocalTime = new Date(utc + (3600000*offset));
+    var nextWeekLocalTime = new Date(utc_nextWeek + (3600000*offset)).toISOString();
+    var nowLocalTime = new Date(utc + (3600000*offset)).toISOString();
 
     timeString = 'now '+ nowLocalTime + ', nextweek:' + nextWeekLocalTime;
 
@@ -36,13 +36,10 @@ exports.handler = function index(event, context, callback) {
         case 'swing':
             targetCalendar = SWING_CALENDAR;
             break;
-
         case 'blues':
             tagetCalendar = BLUES_CALENDAR;
             break;
     }
-
-
 
     //const GOOGLE_MAP_API_KEY = 'AIzaSyBY7C54J0Z2tm_OOORmDvVY0gZjeNQIvQY';
 
@@ -105,7 +102,7 @@ exports.handler = function index(event, context, callback) {
         //return; //Should stop from here
     });
 
-    console.log('processing event: ' + event + ' date info:' + timeString);
+    console.log('1412: processing event: ' + event + ' date info:' + timeString);
     //callback(null, { hello: 'Hello this is 9527 ' });
 
     //callback(null, response);
