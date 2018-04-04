@@ -23,7 +23,7 @@ exports.handler = function index(event, context, callback) {
         //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
         // },
         //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
-        body: { "message": "20180218[2252] - Your Selection is indeed : " + event.type + timestring }
+        body: { "message": "20180218[2252] - Your Selection is indeed : " + event.type + timeString }
     };
     
     const PRIMARY_CALENDAR = 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com';
