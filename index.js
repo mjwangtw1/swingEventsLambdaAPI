@@ -1,7 +1,6 @@
 console.log('starting function - 20180405')
 
 let google = require('googleapis');
-var stringify = require('json-stringify-safe');
 
 exports.handler = function index(event, context, callback) {
 
@@ -19,11 +18,6 @@ exports.handler = function index(event, context, callback) {
 
     var response = {
         statusCode: 200,
-        // headers: {
-        //   "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
-        //   "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
-        // },
-        //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
         body: { "message": "20180218[2252] - Your Selection is indeed : " + event.type + timeString }
     };
     
@@ -78,8 +72,8 @@ exports.handler = function index(event, context, callback) {
         calendarId: targetCalendar,
         maxResults: count,
         // timeMin: nowLocalTime,
-        //timeMin: nowLocalTime,
-        //timeMax: nextWeekLocalTime,
+        TimeMin: nowLocalTime,
+        timeMax: nextWeekLocalTime,
             singleEvents: singleEventsFlag,
             orderBy: orderByType
         //     orderBy: 'startTime'
@@ -89,8 +83,8 @@ exports.handler = function index(event, context, callback) {
         {
             //just pass in empty
             params: {
-                timeMin: nowLocalTime,
-                timeMax: nextWeekLocalTime,
+                // timeMin: nowLocalTime,
+                // timeMax: nextWeekLocalTime,
                 // timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
                 // timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
                 //singleEvents: true,
@@ -106,8 +100,8 @@ exports.handler = function index(event, context, callback) {
         }else{
             console.log('Should worked fine 599 01');
             console.log(res);
-            var result = JSON.parse(stringify(res));
-            //result = res; //case showDuplicate == false;
+           // var result = JSON.parse(stringify(res));
+            result = res; //case showDuplicate == false;
             //result = res.data; //Use this to avoid Circular Structure.
 
             var NewResponse = {
