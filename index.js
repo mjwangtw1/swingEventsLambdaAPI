@@ -70,6 +70,8 @@ exports.handler = function index(event, context, callback) {
         auth: jwtClient,
         //desired Calendar ID
         calendarId: targetCalendar,
+        maxResult: 5,
+        TimeMin: nowLocalTime,
         //timeMin: nowLocalTime,
         //timeMax: nextWeekLocalTime,
         //calendarId: CALENDAR_ID['blues'],
@@ -105,7 +107,8 @@ exports.handler = function index(event, context, callback) {
                         "NextWeekTime" : nextWeekLocalTime,
                         "Desc" : res.description,
                         "timeZone" : res.timeZone,
-                        "items" : res.items
+                        "items" : res.items,
+                        "res_raw": res
                     }
             };
             callback(null, NewResponse);
