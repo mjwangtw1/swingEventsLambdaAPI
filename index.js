@@ -75,7 +75,7 @@ exports.handler = function index(event, context, callback) {
         //timeMin: nowLocalTime,
         //timeMax: nextWeekLocalTime,
         //calendarId: CALENDAR_ID['blues'],
-        timeZone: "Asia/Taipei"
+        //timeZone: "Asia/Taipei"
     },
         {
         //Trying new Method
@@ -102,20 +102,20 @@ exports.handler = function index(event, context, callback) {
         }else{
             console.log('Should worked fine');
             console.log(res);
-            callback(null, res);
+            //callback(null, res);
 
-            // var NewResponse = {
-            //         statusCode: 200,
-            //         body: {
-            //             "NowTime" : nowLocalTime,
-            //             "NextWeekTime" : nextWeekLocalTime,
-            //             "Desc" : res.description,
-            //             "timeZone" : res.timeZone,
-            //             "items" : res.items,
-            //             "res_raw": res
-            //         }
-            // };
-            // callback(null, NewResponse);
+            var NewResponse = {
+                    statusCode: 200,
+                    body: {
+                        "NowTime" : nowLocalTime,
+                        "NextWeekTime" : nextWeekLocalTime,
+                        "Desc" : res.description,
+                        "timeZone" : res.timeZone,
+                        "items" : res.items,
+                        "res_raw": res
+                    }
+            };
+            callback(null, NewResponse);
         }
    
         // //console.log(NewResponse);
