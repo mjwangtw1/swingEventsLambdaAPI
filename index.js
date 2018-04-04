@@ -70,17 +70,25 @@ exports.handler = function index(event, context, callback) {
         auth: jwtClient,
         //desired Calendar ID
         calendarId: targetCalendar,
-        timeMin: nowLocalTime,
-        timeMax: nextWeekLocalTime,
+        //timeMin: nowLocalTime,
+        //timeMax: nextWeekLocalTime,
         //calendarId: CALENDAR_ID['blues'],
         timeZone: "Asia/Taipei"
+    },
+        {
+        //Trying new Method
+        qs: {
+            timeMin: nowLocalTime,
+            timeMax: nextWeekLocalTime,
+            singleEvents: true,
+            orderBy: 'startTime'
+        }
+        
     }, function (err, res) {
         if (err) {
-
             //const err_message = 'ERROR';
             callback(null, err);
             throw err;
-
         }else{
 
             var NewResponse = {
