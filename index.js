@@ -1,6 +1,6 @@
 console.log('starting function - 20180405')
 
-var google = require('googleapis');
+let google = require('googleapis');
 
 exports.handler = function index(event, context, callback) {
 
@@ -77,14 +77,21 @@ exports.handler = function index(event, context, callback) {
     },
         {
         //Trying new Method
-        qs: {
-            timeMin: nowLocalTime,
-            timeMax: nextWeekLocalTime,
-            singleEvents: true,
-            orderBy: 'startTime'
-        }
-        
-    }, function (err, res) {
+        // qs: {
+        //     timeMin: nowLocalTime,
+        //     timeMax: nextWeekLocalTime,
+        //     singleEvents: true,
+        //     orderBy: 'startTime'
+        // }
+
+            qs: {
+                timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
+                timeMax: (new Date(Date.parse("2018-02-27"))).toISOString(),
+                singleEvents: true,
+                orderBy: 'startTime'
+            }
+
+        }, function (err, res) {
         if (err) {
             //const err_message = 'ERROR';
             callback(null, err);
