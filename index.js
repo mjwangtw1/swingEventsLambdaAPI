@@ -75,7 +75,7 @@ exports.handler = function index(event, context, callback) {
         auth: jwtClient,
         //desired Calendar ID
         calendarId: targetCalendar,
-        maxResult: count,
+        maxResults: count,
         // timeMin: nowLocalTime,
         timeMin: nowLocalTime,
         timeMax: nextWeekLocalTime,
