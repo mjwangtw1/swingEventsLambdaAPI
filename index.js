@@ -73,6 +73,8 @@ exports.handler = function index(event, context, callback) {
         auth: jwtClient,
         //desired Calendar ID
         calendarId: targetCalendar,
+        timeMin: nowLocalTime,
+        timeMax: nextWeekLocalTime,
         //calendarId: CALENDAR_ID['blues'],
         timeZone: "Asia/Taipei"
     }, function (err, res) {
