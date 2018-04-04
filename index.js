@@ -88,7 +88,7 @@ exports.handler = function index(event, context, callback) {
 
             params: {
                 timeMin: (new Date(Date.parse("2018-01-22"))).toISOString(),
-                timeMax: (new Date(Date.parse("2018-0ˊ-27"))).toISOString(),
+                timeMax: (new Date(Date.parse("2018-06-27"))).toISOString(),
                 singleEvents: true,
                 orderBy: 'startTime'
             }
