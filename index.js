@@ -79,7 +79,7 @@ exports.handler = function index(event, context, callback) {
         // timeMin: nowLocalTime,
         timeMin: nowLocalTime,
         timeMax: nextWeekLocalTime,
-        //    singleEvents: singleEventsFlag,
+            singleEvents: singleEventsFlag,
             orderBy: orderByType
         //     orderBy: 'startTime'
         //calendarId: CALENDAR_ID['blues'],
@@ -104,6 +104,8 @@ exports.handler = function index(event, context, callback) {
             throw err;
         }else{
             console.log('Should worked fine 599 01');
+            console.log(res);
+
 
             //result = res; //case showDuplicate == false;
             result = res.data; //Use this to avoid Circular Structure.
