@@ -105,8 +105,8 @@ exports.handler = function index(event, context, callback) {
         }else{
             console.log('Should worked fine 599 01');
 
-            result = res; //case showDuplicate == false;
-            //result = res.data; //Use this to avoid Circular Structure.
+            //result = res; //case showDuplicate == false;
+            result = res.data; //Use this to avoid Circular Structure.
 
             var NewResponse = {
                     statusCode: 200,
