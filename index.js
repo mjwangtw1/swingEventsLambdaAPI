@@ -96,13 +96,14 @@ exports.handler = function index(event, context, callback) {
         }, function (err, res) {
         if (err) {
             //const err_message = 'ERROR';
-            console.log('hit an error 995');
+            console.log('hit an error 995 01');
             callback(null, err);
             throw err;
         }else{
-            console.log('Should worked fine 599');
-            console.log(JSON.stringify(res));
-            callback(null, res);
+            console.log('Should worked fine 599 01');
+            //console.log(JSON.stringify(res));
+            console.log(res.data);
+            callback(null, res.data);
 
             // var NewResponse = {
             //         statusCode: 200,
