@@ -74,6 +74,8 @@ exports.handler = function index(event, context, callback) {
         // timeMin: nowLocalTime,
         timeMin: nowLocalTime,
         timeMax: nextWeekLocalTime,
+            singleEvents: true,
+            orderBy: 'startTime'
         //     orderBy: 'startTime'
         //calendarId: CALENDAR_ID['blues'],
         //timeZone: "Asia/Taipei"
@@ -103,7 +105,7 @@ exports.handler = function index(event, context, callback) {
             var NewResponse = {
                     statusCode: 200,
                     body: {
-                        "Remark" : '1624',
+                        "Remark" : '1633',
                         "NowTime" : nowLocalTime,
                         "NextWeekTime" : nextWeekLocalTime,
                         "Desc" : result.description,
