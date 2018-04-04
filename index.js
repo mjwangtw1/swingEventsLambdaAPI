@@ -5,20 +5,16 @@ var google = require('googleapis');
 exports.handler = function index(event, context, callback) {
 
     //Here Deals with the time format
-    // var dt = new Date();
-    // dt.setDate(dt.getDate()+7);
-    // nextWeek = dt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
-    // var nowdt = new Date();
-    // today = nowdt.toLocaleString(['zh-TW'],{timeZone: 'Asia/Taipei'});
-    //timestring = ', Nowdate: ' + nowdt + ' , NextWeekDt : ' + nextWeek;
-
-
     offset = 8; //Taipei = UTC+8
-    var d = new Date();
-    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    var nd = new Date(utc + (3600000*offset));
+    var nowDate = new Date();
+    var utc = nowDate.getTime() + (nowDate.getTimezoneOffset() * 60000);
+    var nextWeek = new Date();
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    var utc_nextWeek = nextWeek.getTime() + (nextWeek.getTimezoneOffset() * 60000);
+    var nextWeekLocalTime = new Date(utc_nextWeek + (3600000*offset));
+    var nowLocalTime = new Date(utc + (3600000*offset));
 
-    timestring = ', newMethod: ' + nd;
+    timeString = 'now '+ nowLocalTime + ', nextweek:' + nextWeekLocalTime;
 
     var response = {
         statusCode: 200,
@@ -29,15 +25,7 @@ exports.handler = function index(event, context, callback) {
         //body: { "message": "20180103[1038] - Your Selection is indeed : " + event.type }
         body: { "message": "20180218[2252] - Your Selection is indeed : " + event.type + timestring }
     };
-
-    //user Selection event.type
-    //Get the current Date:
-    // const CALENDAR_ID = {
-    //     'primary': 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com', //Special Events
-    //     'swing' : 'du5ncgcem4duked6jui8p1g5as@group.calendar.google.com',
-    //     'blues' : 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com'
-    // };
-
+    
     const PRIMARY_CALENDAR = 'k89l8gcv9l19k5aafaolmn2d38@group.calendar.google.com';
     const SWING_CALENDAR = 'du5ncgcem4duked6jui8p1g5as@group.calendar.google.com';
     const BLUES_CALENDAR = 'hbcpknmo5l1jp455qdbrjps2uo@group.calendar.google.com';
