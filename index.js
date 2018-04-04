@@ -71,7 +71,7 @@ exports.handler = function index(event, context, callback) {
         //desired Calendar ID
         calendarId: targetCalendar,
         maxResult: 5,
-        TimeMin: nowLocalTime,
+        timeMin: nowLocalTime,
         //timeMin: nowLocalTime,
         //timeMax: nextWeekLocalTime,
         //calendarId: CALENDAR_ID['blues'],
