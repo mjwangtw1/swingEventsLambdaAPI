@@ -96,26 +96,26 @@ exports.handler = function index(event, context, callback) {
         }, function (err, res) {
         if (err) {
             //const err_message = 'ERROR';
-            console.log('hit an error');
+            console.log('hit an error 995');
             callback(null, err);
             throw err;
         }else{
-            console.log('Should worked fine');
-            console.log(res);
-            //callback(null, res);
+            console.log('Should worked fine 599');
+            console.log(JSON.stringify(res));
+            callback(null, res);
 
-            var NewResponse = {
-                    statusCode: 200,
-                    body: {
-                        "NowTime" : nowLocalTime,
-                        "NextWeekTime" : nextWeekLocalTime,
-                        "Desc" : res.description,
-                        "timeZone" : res.timeZone,
-                        "items" : res.items,
-                        "res_raw": res
-                    }
-            };
-            callback(null, NewResponse);
+            // var NewResponse = {
+            //         statusCode: 200,
+            //         body: {
+            //             "NowTime" : nowLocalTime,
+            //             "NextWeekTime" : nextWeekLocalTime,
+            //             "Desc" : res.description,
+            //             "timeZone" : res.timeZone,
+            //             "items" : res.items,
+            //             "res_raw": res
+            //         }
+            // };
+            // callback(null, NewResponse);
         }
    
         // //console.log(NewResponse);
@@ -124,7 +124,7 @@ exports.handler = function index(event, context, callback) {
         //return; //Should stop from here
     });
 
-    console.log('1539: Refatch Data - processing event: ' + event + ' date info:' + timeString);
+    console.log('1600: Refatch Data - processing event: ' + event + ' date info:' + timeString);
     //callback(null, { hello: 'Hello this is 9527 ' });
 
     //callback(null, response);
